@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nIiQCvZT6APchHqsMo3d82W+YZn/4DWkATriZxRgJQY=",
+  "Source": "HttpModel.Api",
+  "BasePath": "_content/HttpModel.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

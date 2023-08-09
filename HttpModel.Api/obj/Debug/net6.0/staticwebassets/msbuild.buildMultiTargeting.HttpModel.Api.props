@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\HttpModel.Api.props" />
+</Project>
