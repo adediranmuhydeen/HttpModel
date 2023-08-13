@@ -9,7 +9,9 @@ using HttpModel.Api.Model;
 
 //var result = DataDemo<List<PersonDto>>.HttpGet("https://localhost:7213/api/Person/GetPerons");
 //Console.WriteLine(result);
-var person = new Person { Email = "adediran@adebayo.com", Name = "Adediran Muhydeen", PhoneNumber = "08061695754" };
-var resultPost = await DataDemo<Person>.HttpPost("https://localhost:7213/api/Person/AddPerson", person);
+var person = new PersonDto { Email = "adebayoawwaldele@gmail.com.com", Name = "Abdulsalam Adebayo", PhoneNumber = "080657828987" };
+var resultPost = await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
+var result = await DataDemo<PersonDto>.HttpPostAsync("https://localhost:7213/api/Person/AddPerson", person);
 
+Console.WriteLine(result);
 Console.WriteLine(resultPost);
