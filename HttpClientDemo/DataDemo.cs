@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace HttpClientDemo
@@ -21,11 +22,22 @@ namespace HttpClientDemo
             }
         }
 
-        public static async Task<string> HttpPost(string uri, T data) 
+        public static async Task<string> HttpPostAsJson(string uri, T data) 
         {
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsJsonAsync(uri, JsonSerializer.Serialize(data));
+                var response = await client.PostAsJsonAsync(uri, data);
+                return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        public static async Task<string> HttpPostAsync(string uri, T data)
+        {
+            using(var client = new HttpClient())
+            {
+                var neResponse = JsonSerializer.Serialize(data);
+                var stringContent = new StringContent(neResponse, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, stringContent);
                 return await response.Content.ReadAsStringAsync();
             }
         }
