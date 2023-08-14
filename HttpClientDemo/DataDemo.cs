@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using HttpClientDemo.Helpers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -16,7 +17,9 @@ namespace HttpClientDemo
                 {
                     var responseStr = await response.Content.ReadAsStringAsync();
                     var JsonResponse = JsonSerializer.Deserialize<T>(responseStr, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                    await Console.Out.WriteLineAsync(ApiErrorHandler<T>.GetApiErrorResponse(JsonResponse);
                     return JsonResponse;
+
                 }
                 return null;
             }

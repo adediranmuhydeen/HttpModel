@@ -2,9 +2,9 @@
 
 namespace HttpClientDemo.Helpers
 {
-    public class ApiErrorHandler
+    public class ApiErrorHandler<T> where T : class
     {
-        public static Dictionary<string, List<string>> GetApiErrorResponse(string responseBody)
+        public static void GetApiErrorResponse(string responseBody)
         {
             var result = new Dictionary<string, List<string>>();
 
@@ -21,8 +21,18 @@ namespace HttpClientDemo.Helpers
                 }
                 result.Add(key, errorList);
             }
-
-            return result;
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Key);
+                foreach (var value in item.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
         }
+
+       
     }
+
+    
 }
