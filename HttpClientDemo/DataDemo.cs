@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using HttpClientDemo.Helpers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace HttpClientDemo
@@ -15,18 +17,34 @@ namespace HttpClientDemo
                 {
                     var responseStr = await response.Content.ReadAsStringAsync();
                     var JsonResponse = JsonSerializer.Deserialize<T>(responseStr, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                    ApiErrorHandler<T>.GetApiErrorResponse(responseStr);
                     return JsonResponse;
+
                 }
                 return null;
             }
         }
 
-        public static async Task<string> HttpPost(string uri, T data) 
+        public static async Task<string> HttpPostAsJson(string uri, T data) 
         {
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsJsonAsync(uri, JsonSerializer.Serialize(data));
+                var response = await client.PostAsJsonAsync(uri, data);
+                ApiErrorHandler<T>.GetApiErrorResponse( await response.Content.ReadAsStringAsync());
                 return await response.Content.ReadAsStringAsync();
+            }
+        }
+
+        public static async Task<string> HttpPostAsync(string uri, T data)
+        {
+            using(var client = new HttpClient())
+            {
+                var neResponse = JsonSerializer.Serialize(data);
+                var stringContent = new StringContent(neResponse, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(uri, stringContent);
+                var result = await response.Content.ReadAsStringAsync();
+                ApiErrorHandler<T>.GetApiErrorResponse(result);
+                return result;
             }
         }
     }
