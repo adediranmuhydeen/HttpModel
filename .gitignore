@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/HttpClientDemo/config/applicationhost.config
+/.vs/HttpClientDemo/DesignTimeBuild/.dtbcache.v2
+/.vs/HttpClientDemo/FileContentIndex/06cbb9dc-28ce-46de-ad70-69b471041d6b.vsidx
+/.vs/HttpClientDemo/FileContentIndex/8c085897-4b80-42c6-b956-9d8a272aef2f.vsidx
+/.vs/HttpClientDemo/FileContentIndex/8d45b88c-df1e-440b-9946-f4954f6c7e7f.vsidx
+/.vs/HttpClientDemo/FileContentIndex/976d0cbc-273a-4cca-aa14-c946360e6dd8.vsidx
+/.vs/HttpClientDemo/FileContentIndex/9fab7b25-8340-4a78-81a0-cc11e9861696.vsidx
+/.vs/ProjectEvaluation/httpclientdemo.projects.v6.1
+/.vs/HttpClientDemo/FileContentIndex/read.lock
+/.vs/HttpClientDemo/FileContentIndex/716db571-35ba-4af7-a890-5687ad2e0745.vsidx
+/.vs/HttpClientDemo/FileContentIndex/70432457-35d6-4c27-8821-8c894be07f31.vsidx
+/.vs/HttpClientDemo/FileContentIndex/1731a015-a001-4e15-8aa8-ba3e9e732198.vsidx
+/.vs/HttpClientDemo/FileContentIndex/087c0aa4-0feb-4180-b76b-7e9ac048e37a.vsidx
