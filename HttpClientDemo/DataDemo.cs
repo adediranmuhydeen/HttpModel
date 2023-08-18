@@ -17,7 +17,7 @@ namespace HttpClientDemo
                 {
                     var responseStr = await response.Content.ReadAsStringAsync();
                     var JsonResponse = JsonSerializer.Deserialize<T>(responseStr, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
-                    await Console.Out.WriteLineAsync(ApiErrorHandler<T>.GetApiErrorResponse(JsonResponse);
+                    ApiErrorHandler<T>.GetApiErrorResponse(responseStr);
                     return JsonResponse;
 
                 }
