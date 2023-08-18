@@ -30,6 +30,7 @@ namespace HttpClientDemo
             using (var client = new HttpClient())
             {
                 var response = await client.PostAsJsonAsync(uri, data);
+                ApiErrorHandler<T>.GetApiErrorResponse( await response.Content.ReadAsStringAsync());
                 return await response.Content.ReadAsStringAsync();
             }
         }
@@ -41,7 +42,9 @@ namespace HttpClientDemo
                 var neResponse = JsonSerializer.Serialize(data);
                 var stringContent = new StringContent(neResponse, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(uri, stringContent);
-                return await response.Content.ReadAsStringAsync();
+                var result = await response.Content.ReadAsStringAsync();
+                ApiErrorHandler<T>.GetApiErrorResponse(result);
+                return result;
             }
         }
     }
