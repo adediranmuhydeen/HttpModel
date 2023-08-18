@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using HttpClientDemo;
+using HttpClientDemo.Helpers;
 using HttpModel.Api.Model;
 
 //var uri = "https://mocki.io/v1/d33691f7-1eb5-45aa-9642-8d538f6c5ebd";
@@ -14,5 +15,8 @@ var rson = new PersonDto { Email = "adebayoawwaldele@gmail", Name = "Awwal Adeba
 var resultPost = await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
 var result = await DataDemo<PersonDto>.HttpPostAsync("https://localhost:7213/api/Person/AddPerson", rson);
 
-Console.WriteLine(result);
-Console.WriteLine(resultPost);
+Console.WriteLine("<-----------------------------------------WELCOME--------------------------------------->\n" + "To add a person, press 1\n" + "To Get a person, press 2\n" + "To Get all persons press 3\n" +
+   "To \'Exit\' this application, press 4");
+var temp = CLIService.Decision();
+
+Console.ReadLine();
