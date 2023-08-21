@@ -47,6 +47,30 @@ namespace HttpClientDemo
                 return result;
             }
         }
+
+        public static async Task<T> GetOneEntity(string uri, int id)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = await client.PostAsJsonAsync(uri, id);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var res = await response.Content.ReadAsStringAsync();
+                        var jsonResult = JsonSerializer.Deserialize<T>(res, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                        ApiErrorHandler<T>.GetApiErrorResponse(res);
+                        return jsonResult;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return null;
+        }
     }
 
     public class Res
