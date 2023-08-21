@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using HttpModel.Api.Data;
 using HttpModel.Api.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +43,18 @@ namespace HttpModel.Api.Controllers
                 persons.Add(person);
             }
             return persons;
+        }
+
+        [HttpGet ("GetPersonById")]
+        public async Task<PersonDto> GetPersonById(int id)
+        {
+            var res = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
+            var result = _mapper.Map<PersonDto>(res);
+            if(result == null)
+            {
+                return null;
+            }
+            return result;
         }
     }
 }

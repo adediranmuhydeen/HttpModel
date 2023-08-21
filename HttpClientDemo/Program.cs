@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using HttpClientDemo;
+﻿using HttpClientDemo;
 using HttpClientDemo.Helpers;
 using HttpModel.Api.Model;
 
@@ -18,5 +17,6 @@ var result = await DataDemo<PersonDto>.HttpPostAsync("https://localhost:7213/api
 Console.WriteLine("<-----------------------------------------WELCOME--------------------------------------->\n" + "To add a person, press 1\n" + "To Get a person, press 2\n" + "To Get all persons press 3\n" +
    "To \'Exit\' this application, press 4");
 var temp = CLIService.Decision();
+await CLIService.Options(temp);
 
 Console.ReadLine();
