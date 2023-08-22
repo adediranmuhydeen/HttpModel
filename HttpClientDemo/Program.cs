@@ -11,12 +11,12 @@ using HttpModel.Api.Model;
 //Console.WriteLine(result);
 var person = new PersonDto { Email = "adebayoawwaldele@gmail", Name = "Abdulsalam Adebayo", PhoneNumber = "080657828987" };
 var rson = new PersonDto { Email = "adebayoawwaldele@gmail", Name = "Awwal Adebayo", PhoneNumber = "080757828987" };
-var resultPost = await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
-var result = await DataDemo<PersonDto>.HttpPostAsync("https://localhost:7213/api/Person/AddPerson", rson);
+ await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
+await DataDemo<PersonDto>.HttpPostAsync("https://localhost:7213/api/Person/AddPerson", rson);
 
 Console.WriteLine("<-----------------------------------------WELCOME--------------------------------------->\n" + "To add a person, press 1\n" + "To Get a person, press 2\n" + "To Get all persons press 3\n" +
    "To \'Exit\' this application, press 4");
-var temp = CLIService.Decision();
-await CLIService.Options(temp);
+Console.WriteLine("Please, enter a number between 1 and 4");
+await CLIService.Options();
 
 Console.ReadLine();

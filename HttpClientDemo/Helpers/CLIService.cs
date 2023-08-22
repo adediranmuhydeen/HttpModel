@@ -23,9 +23,25 @@ namespace HttpClientDemo.Helpers
             return input;
         }
 
-        public static async Task Options(int decision)
+        public static async Task Options()
         {
-            switch (decision)
+            Start:
+            int tem;
+            Console.WriteLine("Please, enter a number between 1 and 4");
+            var input = Console.ReadLine();
+            var boo = Int32.TryParse(input, out tem);
+            if(!boo)
+            {
+                Console.WriteLine("Input is not numerical\n");
+                goto Start;
+            }
+            if (tem < 1 || tem > 4)
+            {
+                await Console.Out.WriteLineAsync("The value entered is not valid\n");
+                goto Start;
+            }
+
+            switch (tem)
             {
                 case 1:
                     await Console.Out.WriteLineAsync("Enter the person name");
@@ -42,7 +58,7 @@ namespace HttpClientDemo.Helpers
                     };
                     var result =await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
                     Console.WriteLine(result);
-                    break;
+                    goto Start;
                 case 2:
                     int response;
                     await Console.Out.WriteLineAsync("Enter person ID");
@@ -53,15 +69,14 @@ namespace HttpClientDemo.Helpers
                         var apiResponse = await DataDemo<PersonDto>.GetOneEntity("https://localhost:7213/api/Person/GetPersonById", response);
                         Console.WriteLine($"Name {apiResponse.Name}\nPhone Number {apiResponse.PhoneNumber}\nEmail {apiResponse.Email}");
                     }
-                    WelcomePage();
-                    break;
+                    goto Start;
                 case 3:
                     var apiRes = await DataDemo<List<PersonDto>>.HttpGet("https://localhost:7213/api/Person/GetPerons");
                     foreach ( PersonDto item in apiRes )
                     {
                         Console.WriteLine($"Name {item.Name}\nPhone Number {item.PhoneNumber}\nEmail {item.Email}");
                     };
-                    break; 
+                    goto Start;
                 case 4:
                     Environment.Exit(0);
                     break;
