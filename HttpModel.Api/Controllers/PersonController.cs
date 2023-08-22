@@ -46,7 +46,7 @@ namespace HttpModel.Api.Controllers
         }
 
         [HttpGet ("GetPersonById")]
-        public async Task<PersonDto> GetPersonById(int id)
+        public async Task<PersonDto> GetPersonById([FromBody]int id)
         {
             var res = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
             var result = _mapper.Map<PersonDto>(res);

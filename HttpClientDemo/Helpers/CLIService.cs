@@ -67,8 +67,13 @@ namespace HttpClientDemo.Helpers
                     if (res)
                     {
                         var apiResponse = await DataDemo<PersonDto>.GetOneEntity("https://localhost:7213/api/Person/GetPersonById", response);
-                        Console.WriteLine($"Name {apiResponse.Name}\nPhone Number {apiResponse.PhoneNumber}\nEmail {apiResponse.Email}");
+                        if(apiResponse != null)
+                        {
+                            Console.WriteLine($"Name {apiResponse.Name}\nPhone Number {apiResponse.PhoneNumber}\nEmail {apiResponse.Email}");
+                        }
+                        Console.WriteLine($"User with Id {response} was not found");
                     }
+                    await Console.Out.WriteLineAsync("Invalid input");
                     goto Start;
                 case 3:
                     var apiRes = await DataDemo<List<PersonDto>>.HttpGet("https://localhost:7213/api/Person/GetPerons");
