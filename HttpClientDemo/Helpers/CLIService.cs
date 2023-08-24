@@ -4,24 +4,6 @@ namespace HttpClientDemo.Helpers
 {
     public class CLIService
     {
-        private static int WelcomePage()
-        {
-            int temp;
-            Console.WriteLine("Please, enter a number between 1 and 4");
-            var input = Console.ReadLine();
-            Int32.TryParse(input, out temp);
-            return temp;
-        }
-
-        public static int Decision()
-        {
-            var input = WelcomePage();
-            if (input < 1 || input>4)
-            {
-                input = Decision();
-            }
-            return input;
-        }
 
         public static async Task Options()
         {
@@ -57,7 +39,7 @@ namespace HttpClientDemo.Helpers
                         Email = email
                     };
                     var result =await DataDemo<PersonDto>.HttpPostAsJson("https://localhost:7213/api/Person/AddPerson", person);
-                    Console.WriteLine(result);
+                    Console.WriteLine(result + "\n");
                     goto Start;
                 case 2:
                     int response;
@@ -69,17 +51,24 @@ namespace HttpClientDemo.Helpers
                         var apiResponse = await DataDemo<PersonDto>.GetOneEntity("https://localhost:7213/api/Person/GetPersonById", response);
                         if(apiResponse != null)
                         {
-                            Console.WriteLine($"Name {apiResponse.Name}\nPhone Number {apiResponse.PhoneNumber}\nEmail {apiResponse.Email}");
+                            Console.WriteLine($"Name {apiResponse.Name}\nPhone Number {apiResponse.PhoneNumber}\nEmail {apiResponse.Email}\n");
                         }
-                        Console.WriteLine($"User with Id {response} was not found");
+                        else
+                        {
+                            Console.WriteLine($"User with Id {response} was not found");
+                        }
+                       
                     }
-                    await Console.Out.WriteLineAsync("Invalid input");
+                    else
+                    {
+                        await Console.Out.WriteLineAsync("Invalid input");
+                    }
                     goto Start;
                 case 3:
                     var apiRes = await DataDemo<List<PersonDto>>.HttpGet("https://localhost:7213/api/Person/GetPerons");
                     foreach ( PersonDto item in apiRes )
                     {
-                        Console.WriteLine($"Name {item.Name}\nPhone Number {item.PhoneNumber}\nEmail {item.Email}");
+                        Console.WriteLine($"Name {item.Name}\nPhone Number {item.PhoneNumber}\nEmail {item.Email}\n");
                     };
                     goto Start;
                 case 4:
