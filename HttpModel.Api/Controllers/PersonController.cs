@@ -33,7 +33,7 @@ namespace HttpModel.Api.Controllers
         }
 
         [HttpGet("GetPerons")]
-        public async Task<List<PersonDto>> GetPerson()
+        public async Task<ActionResult<List<PersonDto>>> GetPerson()
         { 
             List<PersonDto> persons = new();
             var mappedPersons = await _context.Persons.ToListAsync();
@@ -42,19 +42,15 @@ namespace HttpModel.Api.Controllers
                 var person = _mapper.Map<PersonDto>(mappedPerson);
                 persons.Add(person);
             }
-            return persons;
+            return Ok(persons);
         }
 
         [HttpGet ("GetPersonById")]
-        public async Task<PersonDto> GetPersonById([FromBody]int id)
+        public async Task<ActionResult<PersonDto>> GetPersonById([FromHeader]int id)
         {
             var res = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
             var result = _mapper.Map<PersonDto>(res);
-            if(result == null)
-            {
-                return null;
-            }
-            return result;
+            return Ok(result);
         }
     }
 }
