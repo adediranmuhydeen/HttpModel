@@ -12,12 +12,14 @@ namespace HttpModel.Api.Controllers
     {
         private readonly ApiDbcontext _context;
         private readonly IMapper _mapper;
-        
+        private readonly ILogger _logger;
 
-        public PersonController(ApiDbcontext context, IMapper mapper)
+
+        public PersonController(ApiDbcontext context, IMapper mapper, ILogger logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost("AddPerson")]

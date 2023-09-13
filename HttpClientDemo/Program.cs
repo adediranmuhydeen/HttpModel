@@ -1,6 +1,7 @@
 ﻿using HttpClientDemo;
 using HttpClientDemo.Helpers;
 using HttpModel.Api.Model;
+using Serilog;
 
 //var uri = "https://mocki.io/v1/d33691f7-1eb5-45aa-9642-8d538f6c5ebd";
 //var client = new HttpClient();
@@ -20,3 +21,6 @@ Console.WriteLine("Please, enter a number between 1 and 4");
 await CLIService.Options();
 
 Console.ReadLine();
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("C:\\Users\\adediranma\\source\\repos\\HttpClientDemo\\HttpClientDemo\\ErrorLogger.log", rollingInterval:RollingInterval.Day).CreateLogger();
