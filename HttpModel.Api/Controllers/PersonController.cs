@@ -12,6 +12,7 @@ namespace HttpModel.Api.Controllers
     {
         private readonly ApiDbcontext _context;
         private readonly IMapper _mapper;
+        
 
         public PersonController(ApiDbcontext context, IMapper mapper)
         {

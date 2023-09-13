@@ -67,7 +67,7 @@ namespace HttpClientDemo
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.InnerException}");
             }
             return null;
         }
